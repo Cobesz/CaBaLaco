@@ -5,6 +5,14 @@ config.vm.provider "virtualbox" do |v|
   v.cpus = 2
 end
 
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu/xenial64"
+
+  # Forward guest port 80 to host port 8888 and name mapping
+  config.vm.network :forwarded_port, guest: 3000, host: 8888
+
+  config.vm.synced_folder "webroot/", "/home/ubuntu/webroot/", :owner => "www-data", type: "virtualbox"
+
 config.vm.provision "shell", inline: <<-SHELL
   #Installing dependancies
     curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -16,12 +24,12 @@ config.vm.provision "shell", inline: <<-SHELL
     cd cabalaco
     npm start
   SHELL
+end
 
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/xenial64"
-
-  # Forward guest port 80 to host port 8888 and name mapping
-  config.vm.network :forwarded_port, guest: 3000, host: 8888
-
-  config.vm.synced_folder "webroot/", "/home/ubuntu/webroot/", :owner => "www-data", type: "virtualbox"
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", inline: <<-SHELL, run: "always" do |s|
+        cd /home/ubuntu/webroot/cabalaco
+        npm start
+    SHELL
+  end
 end
