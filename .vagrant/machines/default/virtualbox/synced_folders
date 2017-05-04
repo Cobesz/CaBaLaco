@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/ubuntu/webroot/":{"owner":"www-data","type":"virtualbox","guestpath":"/home/ubuntu/webroot","hostpath":"/var/www/html/CaBaLaco/webroot","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/var/www/html/CaBaLaco","disabled":false,"__vagrantfile":true}}}
