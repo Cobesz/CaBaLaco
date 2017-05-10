@@ -18,11 +18,8 @@ config.vm.provision "shell", inline: <<-SHELL
     curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
     sudo apt-get install -y nodejs
     npm install -g create-react-app
-    mkdir /home/ubuntu/webroot
-    cd /home/ubuntu/webroot
-    create-react-app cabalaco
-
-    cd cabalaco
+    cd /home/ubuntu/webroot/cabalaco
+    npm install
     npm start
   SHELL
 end
